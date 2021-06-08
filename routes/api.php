@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\Api\UsersController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,3 +46,5 @@ Route::apiResource('/expenses', ExpenseController::class);
 
 //Route::delete('/expenses/{expense}', [ExpenseController::class, 'destory']);
 // Route::delete('/expenses/{expense}', 'ExpenseController@destory')->name('expenses.destroy');
+
+Route::post('/signup-user', [UsersController::class, 'create_user']);

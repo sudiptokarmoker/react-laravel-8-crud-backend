@@ -24,9 +24,9 @@ class UsersController extends Controller
             return self::return_response('Invalid request for create cousellor', false, ['error' => $validator->errors()->all()], 0, 401);
         }
         try {
-/**
- * Create default data for user table
- */
+            /**
+             * Create default data for user table
+             */
             $userModelInsertObj = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -38,15 +38,11 @@ class UsersController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                 ], 0, 200);
-                /**
-                 * Now send the email for verfiy the email address
-                 */
-                //return EmailSend::send_verify_email($userModelInsertObj, ['email_token' => $userModelInsertObj->email_token, 'baseUrl' => $request->verify_redirect_base_url]);
             } else {
                 return self::return_response('Error while created counsellor user', false, [], 0, 200);
             }
         } catch (\Exception $e) {
-
+            return self::return_response('Exception occured', false, ['error' => $e->getMessage()], 0, 403);
         }
     }
 }
